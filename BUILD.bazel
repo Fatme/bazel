@@ -1,0 +1,20 @@
+package(default_visibility = ["//visibility:public"])
+
+print ("BUILD.bazel step 1")
+load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary", "node_modules_filegroup")
+print ("BUILD.bazel step 2")
+
+node_modules_filegroup(
+	name = "node_modules",
+	packages = [
+		"lodash",
+		"mybazel"
+	]
+)
+
+nodejs_binary(
+	name = "app",
+	entry_point = "mybazel/index.js",
+)
+
+print ("BUILD.bazel step 3")
